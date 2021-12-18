@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}create_account{% endblock %}
+
+
+{% block head %}
+    {{ super() }}
+    <!-- Design du bouton Register -->
+    <style type="text/css">
+
+          
+            
+        .important { color: #336699; }
+    </style>
+
+
+  
+{% endblock %}
+{% block body %}
+
+{% for field, errors in form.errors.items() %}
+{{ ', '.join(errors) }}<br>
+{% endfor %}
+
+
+<h1 style="text-align:left; margin-left:15px;">Je crée mon compte</h1>
+      
+  <!-- Création des différents champs alignés (prénom, nom de famille, adresse mail, mot de passe, confirmation, choix de la formation et de l'année) -->
+
+<form class="form-row" method="POST" action="/createAccount" novalidate>
+  {{ form.csrf_token }} 
+  <div class="form-group col-md-4">
+    <h5>{{ form.Firstname.label(class_="col-sm-2 col-form-label col-form-label-lg")}}</h5>
+      {% if form.errors %} {% for message in form.Firstname.errors %} {{ message}}{% endfor %}{% endif %}
+      {{ form.Firstname(class_="form-control form-control-lg")}}
+  </div>
+  <div class="form-group col-md-4 ">
+    <h5>{{ form.Surname.label(class_="col-sm-2 col-form-label col-form-label-lg")}}</h5>
+      {% if form.errors %} {% for message in form.Surname.errors %} {{ message}}{% endfor %}{% endif %}
+      {{ form.Surname(class_="form-control form-control-lg")}}
+    
+  </div><br>
+
+
+  <div class="form-group col-md-8">
+    <h5>{{ form.Mail.label(class_="col-sm-2 col-form-label col-form-label-lg")}}</h5>
+      {% if form.errors %} {% for message in form.Mail.errors %} {{ message}}{% endfor %}{% endif %}
+      {{ form.Mail(class_="form-control form-control-lg")}}
+    
+  </div><br>
+
+  <div class="form-group col-md-8">
+    <h5>{{ form.Password.label(class_="col-sm-2 col-form-label col-form-label-lg")}}</h5>
+      {% if form.errors %} {% for message in form.Password.errors %} {{ message}}{% endfor %}{% endif %}
+      {{ form.Password(class_="form-control form-control-lg")}}
+    
+  </div><br>
+
+  <div class="form-group col-md-8">
+    <h5>{{ form.Confirm_password.label(class_="col-sm-3 col-form-label col-form-label-lg")}}</h5>
+      {% if form.errors %} {% for message in form.Confirm_password.errors %} {{ message}}{% endfor %}{% endif %}
+      {{ form.Confirm_password(class_="form-control form-control-lg")}}
+    
+  </div><br>
+
+  <div class="form-group col-md-8">
+    <h5>{{ form.Formation.label(class_="col-sm-3 col-form-label col-form-label-lg")}}</h5>
+      {% if form.errors %} {% for message in form.Formation.errors %} {{ message}}{% endfor %}{% endif %}
+      {{ form.Formation(class_="form-control form-control-lg")}}
+    
+  </div><br>
+
+  <div class="form-check form-check-inline col-md-8 ">
+    <h5>{{ form.Year.label(class_="col-sm-0.75 col-form-label col-form-label-lg")}}</h5>
+      {{ form.Year(class_="form-check-input")}}
+    
+  </div><br>
+
+ 
+    
+  </div><br> 
+  <!-- Boutons de validation et d'annulation -->
+  <div class="form-group col-md-8">
+    <button type="submit" class="btn  blue_background">Valider</button><button style="color: white; border:none;"><a href="/loginForm" class="btn red_background">Annuler</a></button></div>
+
+  </form> 
+  
+  
+
+  
+    
+    
+    {% endblock %}
+    

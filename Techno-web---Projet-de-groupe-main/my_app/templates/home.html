@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calendar app</title>
+        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA=" src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    
+    </head>
+    <body>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"> Student Calendar </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Calendar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/creation">Add New Event</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="*" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hi, {{ current_user.fstname }}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+        <select id="filter" onchange="displayLessons()" style="float: right;">
+            {%for year in current_user.year %}
+            {% if year.name == "Bac 1" %}
+            <option value="Bac 1">BAC 1</option>
+            {% endif %}
+            {% if year.name == "Bac 2" %}
+            <option value="Bac 2">BAC 2</option>
+            {% endif %}
+            {% if year.name == "Bac 3" %}
+            <option value="Bac 3">BAC 3</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <table class="table table-bordered">
+            <tr>
+                <th>Heure</th>
+                <th>Lundi</th>
+                <th>Mardi</th>
+                <th>Mercredi</th>
+                <th>Jeudi</th>
+                <th>Vendredi</th>
+                <th>Samedi</th>
+                <th>Dimanche</th>
+            </tr>
+            <tr>
+                <td>08h30</td>
+                <td class="cell" id="Lundi-8:30"></td>
+                <td class="cell" id="Mardi-8:30"></td>
+                <td class="cell" id="Mercredi-8:30"></td>
+                <td class="cell" id="Jeudi-8:30"></td>
+                <td class="cell" id="Vendredi-8:30"></td>
+                <td class="cell" id="Samedi-8:30"></td>
+                <td class="cell" id="Dimanche-8:30"></td>
+            </tr>
+            <tr>
+                <td>10h40</td>
+                <td class="cell" id="Lundi-10:40"></td>
+                <td class="cell" id="Mardi-10:40"></td>
+                <td class="cell" id="Mercredi-10:40"></td>
+                <td class="cell" id="Jeudi-10:40"></td>
+                <td class="cell" id="Vendredi-10:40"></td>
+                <td class="cell" id="Samedi-10:40"></td>
+                <td class="cell" id="Dimanche-10:40"></td>
+            </tr>
+            <tr>
+                <td>12h40</td>
+                <td class="cell" id="Lundi-12:40"></td>
+                <td class="cell" id="Mardi-12:40"></td>
+                <td class="cell" id="Mercredi-12:40"></td>
+                <td class="cell" id="Jeudi-12:40"></td>
+                <td class="cell" id="Vendredi-12:40"></td>
+                <td class="cell" id="Samedi-12:40"></td>
+                <td class="cell" id="Dimanche-12:40"></td>
+            </tr>
+            <tr>
+                <td>14h00</td>
+                <td class="cell" id="Lundi-14:00"></td>
+                <td class="cell" id="Mardi-14:00"></td>
+                <td class="cell" id="Mercredi-14:00"></td>
+                <td class="cell" id="Jeudi-14:00"></td>
+                <td class="cell" id="Vendredi-14:00"></td>
+                <td class="cell" id="Samedi-14:00"></td>
+                <td class="cell" id="Dimanche-14:00"></td>
+            </tr>
+            <tr>
+                <td>16h00</td>
+                <td class="cell" id="Lundi-16:00"></td>
+                <td class="cell" id="Mardi-16:00"></td>
+                <td class="cell" id="Mercredi-16:00"></td>
+                <td class="cell" id="Jeudi-16:00"></td>
+                <td class="cell" id="Vendredi-16:00"></td>
+                <td class="cell" id="Samedi-16:00"></td>
+                <td class="cell" id="Dimanche-16:00"></td>
+            </tr>
+            <tr>
+                <td>18h00</td>
+                <td class="cell" id="Lundi-18:00"></td>
+                <td class="cell" id="Mardi-18:00"></td>
+                <td class="cell" id="Mercredi-18:00"></td>
+                <td class="cell" id="Jeudi-18:00"></td>
+                <td class="cell" id="Vendredi-18:00"></td>
+                <td class="cell" id="Samedi-18:00"></td>
+                <td class="cell" id="Dimanche-18:00"></td>
+            </tr>
+            <tr>
+                <td>20h00</td>
+                <td class="cell" id="Lundi-20:00"></td>
+                <td class="cell" id="Mardi-20:00"></td>
+                <td class="cell" id="Mercredi-20:00"></td>
+                <td class="cell" id="Jeudi-20:00"></td>
+                <td class="cell" id="Vendredi-20:00"></td>
+                <td class="cell" id="Samedi-20:00"></td>
+                <td class="cell" id="Dimanche-20:00"></td>
+            </tr>
+        </table>
+      </div>
+    <div id='Show'>
+      <script src="../static/js/script.js"></script>
+      <script src="../static/js/Event.js"></script>
+      <span class="new"><input type="button" id="Show" onclick="Display_Event();" value="Show Event"></span>
+    </div>
+    
+    <div id="EventList"></div>
+    <script src="../static/js/script.js"></script>
+    <script src="../static/js/Event.js"></script>
+    </body>
+</html>

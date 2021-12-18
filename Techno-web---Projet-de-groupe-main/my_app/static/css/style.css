@@ -1,0 +1,97 @@
+/* Configuration d'un quatrième bouton avec sa taille, sa couleur, la taille du texte et sa couleur, les bordures,... */
+.button1 {background-color: rgb(27, 131, 154);
+    border: none;
+  color:rgb(243, 239, 239);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  
+  }
+  
+  /* Changer la couleur des boutons quand on passe la souris dessus */
+  
+  .button1:hover{background-color: #494c49;}
+
+
+  /* Centrer le tableau */
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    text-align: center;
+    vertical-align: auto;
+  
+  
+    
+  }
+ 
+  
+  
+  .field {
+    padding: 2px 16px;
+    margin: 4px 2px;
+    font-size: large;
+    align-self: right;
+    
+  }
+  
+  .label{
+    font-size: 17px;
+    text-align: left;
+    vertical-align: auto;
+    
+    
+  }
+  
+  
+  
+  
+  td {
+    text-align: center;
+    /* center checkbox horizontally */
+    vertical-align: middle;
+    /* center checkbox vertically */
+  }
+
+  .choice {
+    position: relative;
+    width: 230px;
+    height: 25px;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid #CED4DA;
+  }
+  
+  .checkbox {
+    position: relative;
+    width: 230px;
+    height: 75px;
+    overflow: hidden;
+    border-radius: 5px;
+    border: none;
+  }
+
+  .blue_background {
+    background-color: rgb(0, 85, 255);
+    color: white;
+    margin-left: 5px;
+  }
+
+  .blue_background:hover{
+    background-color: rgb(57, 130, 255) ;
+    color: white;
+  }
+  
+  .red_background {
+    background-color: rgb(248, 12, 44);
+    color: white;
+    margin-left: 5px;
+  }
+
+  .red_background:hover{
+    background-color: rgb(250, 100, 100) ;
+    color: white;
+  }

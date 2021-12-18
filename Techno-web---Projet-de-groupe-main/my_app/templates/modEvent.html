@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %} 
+<h1>Event edit</h1>
+<form method="POST" novalidate>
+    {{ flash() }}
+
+    {{ form.csrf_token }}
+
+    {{ form.title.label }} {{ form.title(size=50) }}<br>
+    {% if form.errors %} {% for message in form.title.errors %} {{ message }}{% endfor %}{% endif %}<br>
+
+    {{ form.description.label }} {{ form.description(size=50) }}<br>
+    {% if form.errors %} {% for message in form.description.errors %} {{ message }}{% endfor %}{% endif %}<br>
+
+    {{ form.start_hour.label }} {{ form.start_hour }} <br><br>
+
+    {{ form.end_hour.label }} {{ form.end_hour }} <br><br>
+
+    {{ form.color.label }} {{ form.color }} <br><br>
+    
+    {{ form.submit }}<br>
+</form>
+{% endblock %}
