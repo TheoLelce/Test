@@ -1,4 +1,4 @@
-
+#include <assert.h>
 const byte numReaders = 1;
 int numG = 5; // Number of Goal that you need to win
 
@@ -60,9 +60,8 @@ if( numG == 0){
       digitalVal = digitalRead(digitalPin1); 
       // if the goal is done trigger sound and led 
       if(digitalVal == HIGH){
-       
+        assert( numG > 0);
         numG--;
-        tone(buzzerpin, 500);
         digitalWrite(ledB, HIGH);
         playPassed();
         delay(1000);
@@ -90,7 +89,7 @@ if( numG == 0){
     // if the goal is done trigger sound and led 
       digitalVal = digitalRead(digitalPin2); 
       if(digitalVal == HIGH){
-   µ
+        assert( numG > 0);
         numG--;
         digitalWrite(ledR, HIGH);
         playPassed();
